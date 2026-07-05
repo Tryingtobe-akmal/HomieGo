@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomieGo</title>
+</head>
+<body>
+    <h3>Edit Your Listing</h3>
+    <form action="http://localhost:8080/listings/<%=clickedListing._id %>?_method=PUT" method="post">
+        <input type="text" name="listing[title]" value="<%= clickedListing.title %>">
+        <br>
+        <br>
+        <textarea name="listing[description]" id="" cols="30" rows="10" ><%= clickedListing.description %></textarea>
+        <br>
+        <br>
+        <input type="text" name="listing[image]"value="<%= clickedListing.image %>">
+        <br>
+        <br>
+        <input type="text" name="listing[price]" value="<%= clickedListing.price %>">
+        <br>
+        <br>
+        <input type="text" name="listing[country]" value="<%= clickedListing.country %>">
+        <br>
+        <br>
+        <input type="text" name="listing[location]" value="<%= clickedListing.location %>">
+        <br>
+        <br>
+        <button>Add</button>
+    </form>
+</body>
+</html>

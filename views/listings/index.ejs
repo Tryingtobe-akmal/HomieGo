@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomieGo</title>
+</head>
+<body>
+    <h3>All Listings</h3>
+    <form action="/listings/new" method="get">
+        <button>Create New Listing</button>
+    </form>
+    <% for( let i=0; i<allListings.length; i++ ) { %>
+    <ul>
+        <li><a href="http://localhost:8080/listings/<%= allListings[i]._id %>"><%= allListings[i].title %></a></li>
+    </ul>
+    
+  <% } %>
+</body>
+</html>
+

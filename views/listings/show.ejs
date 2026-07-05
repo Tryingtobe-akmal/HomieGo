@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomieGo</title>
+</head>
+<body>
+    <h3>Listing Details :</h3>
+    <ul>
+        <li><%= clickedListing.title %></li>
+        <li><%= clickedListing.description %></li>
+        <li>&#8377;<%= clickedListing.price.toLocaleString("en-IN")%></li>
+        <li><%= clickedListing.location %></li>
+        <li><%= clickedListing.country %></li>
+    </ul>
+     <br>
+      <a href="http://localhost:8080/listings/<%= clickedListing._id %>/edit">Edit this Listing</a>
+      <br>
+      <br>
+      <form action="http://localhost:8080/listings/<%= clickedListing._id %>?_method=DELETE" method="post">
+        <button>Delete</button>
+      </form>
+</body>
+</html>

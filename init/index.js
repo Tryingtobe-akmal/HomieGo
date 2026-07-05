@@ -16,8 +16,8 @@ const initDB=async()=>{
    await Listing.insertMany(initdata);
    console.log("data inserted succesfully");
 }
+
 initDB()
 .catch((err)=>{
   console.log(`dear the error is ${err}`);
 })
-console.log("hello");
