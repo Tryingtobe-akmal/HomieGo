@@ -1,0 +1,96 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important    
+}
+/*------------- navbarstyling (bootstrap wala)------------------ */
+.navbar{
+    /* height: 5rem ; */
+    background-color: white;
+}
+.fa-compass{
+    color: red ;
+    font-size:2rem ;
+}
+.nav-link{
+    color:#222222 !important;
+}
+/*----------------- Footer styling ------------------------ */
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info{
+    text-align: center;
+    height:8rem;
+    background-color:#ebebeb ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items:space-evenly;
+}
+.f-info-links,
+.f-info-socials,
+.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+/*--------------------- cards----------------------------- */
+.card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text{
+    font-weight: 400;
+}
+.listing-link{
+    text-decoration: none;
+}
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* box-shadow: 0 12px 25px rgba(0,0,0,0.25); */
+}
+
+/*------------------ footer not stickey--------------------------- */
+body{
+    display: flex;  /*The navbar at top,the container div (which contains ejs body),footer are flex items of body flexbox---plese see boilerplate*/
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1; /*it says ramaining space after navbar and footer must be taken by container div which contain ejs content*/
+}
+/* btn of form.ejs */
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* btn of edit.ejs */
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* show ejs page */
+.show-img{
+    height: 35vh;
+}
+.btns{
+    display: flex;
+    flex-direction: row;
+}

@@ -1,32 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomieGo</title>
-</head>
+<% layout("./layout/boilerplate.ejs") %>
 <body>
-    <h3>Edit Your Listing</h3>
-    <form action="http://localhost:8080/listings/<%=clickedListing._id %>?_method=PUT" method="post">
-        <input type="text" name="listing[title]" value="<%= clickedListing.title %>">
-        <br>
-        <br>
-        <textarea name="listing[description]" id="" cols="30" rows="10" ><%= clickedListing.description %></textarea>
-        <br>
-        <br>
-        <input type="text" name="listing[image]"value="<%= clickedListing.image %>">
-        <br>
-        <br>
-        <input type="text" name="listing[price]" value="<%= clickedListing.price %>">
-        <br>
-        <br>
-        <input type="text" name="listing[country]" value="<%= clickedListing.country %>">
-        <br>
-        <br>
-        <input type="text" name="listing[location]" value="<%= clickedListing.location %>">
-        <br>
-        <br>
-        <button>Add</button>
-    </form>
+    <div class="row mt-3" >
+        <div class="cols-8 offset-2">
+            <h3>Edit Your Listing</h3>
+            <form action="/listings/<%=clickedListing._id %>?_method=PUT" method="post">
+                <div class="mb-3 mt-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" id="title" class="form-control" name="listing[title]" value="<%= clickedListing.title %>">
+                    </div>
+                <div class="mb-3">  
+                    <label for="description" class="form-label">Description</label>   
+                    <textarea name="listing[description]" class="form-control" id="description"  ><%= clickedListing.description %></textarea>
+                </div> 
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>   
+                    <input type="text" class="form-control" name="listing[image]" id="image" <%= clickedListing.image %>">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>   
+                    <input type="number" class="form-control" name="listing[price]" id="price" value="<%= clickedListing.price %>">
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" class="form-control" name="listing[country]" id="country" value="<%= clickedListing.country %>">
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" name="listing[location]" id="location" value="<%= clickedListing.location %>">
+                </div>
+                <button class="btn btn-dark edit-btn mt-5 mb-5">Add</button>
+            </form>
+            <br>
+        </div>    
+    </div>
 </body>
-</html>
+
+
+<!--
+<div class="row">
+    <div class="col-8 offset-2">
+        <h3>Edit Your Listing</h3>
+        <form>
+            ...
+        </form>
+    </div>
+</div> 
+
+-row → Creates a 12-column layout.
+-col-8 → The form occupies 8 columns.
+-offset-2 → Adds 2 empty columns to the left.
+-Result → Your edit form is neatly centered instead of stretching across the entire page.
+
+
+ -->
