@@ -2,19 +2,29 @@ const mongoose=require("mongoose");
 const listingSchema=new mongoose.Schema({
     title:{
         type:String,
-        require:true,
+        required:true,
     },
     description:String,
     image:{
         type:String,
         default:"https://unsplash.com/photos/white-bed-linen-with-throw-pillows-Yrxr3bsPdS0",
-        set:(v)=>{ return v===""? "https://unsplash.com/photos/white-bed-linen-with-throw-pillows-Yrxr3bsPdS0":v} ,// read mongoose virtual
+        set:(v) => v==="" ? "https://unsplash.com/photos/white-bed-linen-with-throw-pillows-Yrxr3bsPdS0": v // read mongoose virtual
     },
-    price:Number,
+    price:{
+        type:Number,
+        required:true,
+    },
 
-    location:String,
+    location:{
+        type:String,
+        required:true,
+    },
 
-    country:String,
+    country:{
+        type:String,
+        required:true,
+        
+    }
 });
 const Listing=mongoose.model("Listing",listingSchema);//our model name : Listing
 module.exports=Listing;
