@@ -24,7 +24,11 @@ const listingSchema=new mongoose.Schema({
         type:String,
         required:true,
         
-    }
+    },
+    review:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Review",
+    }],
 });
 const Listing=mongoose.model("Listing",listingSchema);//our model name : Listing
 module.exports=Listing;
