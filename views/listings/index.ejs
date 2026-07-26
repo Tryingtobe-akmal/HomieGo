@@ -6,11 +6,8 @@
     </form> -->
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
        <% for( let i=0; i<allListings.length; i++ ) { %>
-        <!-- <ul>
-            <li><a href="/listings/<%= allListings[i]._id %>"><%= allListings[i].title %></a></li>
-        </ul> -->
         <a href="/listings/<%= allListings[i]._id %>" class="listing-link">
-            <div class="card" >
+            <div class="card listing-card" >
                         <img src="<%= allListings[i].image %>" class="card-img-top" style="height: 20rem;" alt="...">
                         <div class="card-body">
                             <p class="card-text">

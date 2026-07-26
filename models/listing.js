@@ -1,4 +1,5 @@
 const mongoose=require("mongoose");
+const Review=require("./review.js");
 const listingSchema=new mongoose.Schema({
     title:{
         type:String,
@@ -30,5 +31,15 @@ const listingSchema=new mongoose.Schema({
         ref:"Review",
     }],
 });
+//post middleware
+listingSchema.post("findOneAndDelete",async(listing)=>{
+    console.log("---middleware executed----");
+    if(listing){
+        await Review.deleteMany({_id:{$in:listing.review}});
+    }
+    // await Review.deleteMany({review:{$in:listing.review}});
+    console.log("All reviews of listing deleted form review db after listing deletion, using post middle ware");
+});
+
 const Listing=mongoose.model("Listing",listingSchema);//our model name : Listing
 module.exports=Listing;

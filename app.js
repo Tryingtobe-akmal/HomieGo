@@ -90,7 +90,7 @@ app.get("/listings/new",(req,res)=>{
 //show route
 app.get("/listings/:id",wrapAsync(async(req,res)=>{
     const{id}=req.params;
-    const clickedListing=await Listing.findById(id);
+    const clickedListing=await Listing.findById(id).populate("review");
     res.render("./listings/show.ejs",{clickedListing})    
 }));
 
@@ -135,11 +135,20 @@ app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
     await newReview.save().then((res)=>{console.log(res);});
     await listing.save();
 
-    console.log("New Review Saved");
-    
+    console.log("-----New Review Saved-----");
+
     res.redirect(`/listings/${id}`);
 }));
 
+//Delete Review Route
+app.delete("/listings/:id/review/:ObjectId",wrapAsync(async(req,res)=>{
+    const{id,ObjectId}=req.params;
+    await Listing.findByIdAndUpdate(id,{$pull:{review:ObjectId}});
+    console.log("----Deleted review form listing but not from review db-----");
+    await Review.findByIdAndDelete(ObjectId);
+    console.log("----Deleted review form review db-----");
+    res.redirect(`/listings/${id}`);
+}));
 
 
 //middlewares
