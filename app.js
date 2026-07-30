@@ -5,6 +5,8 @@ const path=require("path");
 const methodOverride=require("method-override");
 const engine = require('ejs-mate');
 const ExpressError=require("./utils/ExpressError.js");
+const session=require("express-session");
+const flash=require("connect-flash");
 
 
 
@@ -33,15 +35,35 @@ app.listen(8080,()=>{
     console.log("app is listening non port 8080");
 });
 
+const sessionOptions={
+    secret:"mysupersecretcode",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        expires:Date.now()+ 7*24*60*60*1000,
+        maxAge:7*24*60*60*1000,
+    }
+}
+
 app.get("/",(req,res)=>{
     res.send("Hi ,I am Akmal");
 });
 
+app.use(session(sessionOptions));
+app.use(flash());
+
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    // console.log(res.locals.success); --res.local.success is an array
+    next();
+});
 
 
 //routes
 app.use("/listings",listingsRouter);
-app.use("/listings/:id/reviews",reviewsRouter);
+app.use("/listings/:id/review",reviewsRouter);
 
 
 
