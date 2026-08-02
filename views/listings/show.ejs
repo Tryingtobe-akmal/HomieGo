@@ -61,9 +61,11 @@
               <h5 class="card-title">@<%=clickedListing.review[i].author.username%></h5>
               <p class="card-text"><%=clickedListing.review[i].comment%> </p>
               <p class="card-text"><%=clickedListing.review[i].rating%>&#11088;</p>
+              <% if(currUser){ %>
                <form action="/listings/<%= clickedListing._id %>/review/<%= clickedListing.review[i]._id %>?_method=DELETE" method="post" class="mb-3">
                 <button class="btn btn-dark btn-sm">Delete</button>
               </form>
+              <% } %>
             </div>
           </div>
           <% } %>

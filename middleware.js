@@ -58,11 +58,11 @@ let {error}= reviewSchema.validate(req.body);
 module.exports.isReviewAuthor=async(req,res,next)=>{
     const{id,ObjectId}=req.params;
     let rev=await Review.findById(ObjectId);
-    console.log(rev);
-    console.log(req.user);
+    // console.log(rev);
+    // console.log(req.user);
     if(!(rev.author.equals(req.user._id))){
         req.flash("error","You are not the owner of this listing!");
-       return res.redirect(`/listings/${id}`);
+        return res.redirect(`/listings/${id}`);
     }
     next();
 }
