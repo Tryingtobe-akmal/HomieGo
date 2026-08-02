@@ -68,17 +68,19 @@ app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
     // console.log(res.locals.success); --res.local.success is an array
+    res.locals.currUser=req.user;
+    //res.local can be accessed in ejs directly but  req.user cannot!
     next();
 });
 
-app.get("/demouser",async(req,res)=>{
-    const fakeuser=new User({
-        email:"helloworld@gmail.com",
-        username:"Rohan",
-    });
-   let registeredUser= await User.register(fakeuser,"helloworld");
-   res.send(registeredUser);
-});
+// app.get("/demouser",async(req,res)=>{
+//     const fakeuser=new User({
+//         email:"helloworld@gmail.com",
+//         username:"Rohan",
+//     });
+//    let registeredUser= await User.register(fakeuser,"helloworld");
+//    res.send(registeredUser);
+// });
 
 //routes
 app.use("/listings",listingsRouter);

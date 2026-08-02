@@ -5,25 +5,19 @@ const ExpressError=require("../utils/ExpressError.js");
 const {reviewSchema}=require("../schema.js");
 const Review=require("../models/review.js");
 const Listing=require("../models/listing.js");
+const{validateReview, isLoggedIn,isReviewAuthor}=require("../middleware.js");
 
 
 
-const validateReview=(req,res,next)=>{
-let {error}= reviewSchema.validate(req.body);
-    if(error){
-        let errMsg=error.details.map((el)=>el.message).join(",");
-        throw new ExpressError(400,errMsg);   
-    }else{
-        next();
-    }
-}
 
 
 //reviews
-router.post("/",validateReview,wrapAsync(async(req,res)=>{
+router.post("/",isLoggedIn,validateReview,wrapAsync(async(req,res)=>{
     const{id}=req.params;
+    // console.log(req.user);
     let listing=await Listing.findById(req.params.id);
     const newReview=new Review(req.body.review);
+    newReview.author=req.user._id;
     listing.review.push(newReview);
     await newReview.save().then((res)=>{console.log(res);});
     await listing.save();
@@ -33,7 +27,7 @@ router.post("/",validateReview,wrapAsync(async(req,res)=>{
 }));
 
 //Delete Review Route
-router.delete("/:ObjectId",wrapAsync(async(req,res)=>{
+router.delete("/:ObjectId",isReviewAuthor,wrapAsync(async(req,res)=>{
     const{id,ObjectId}=req.params;
     await Listing.findByIdAndUpdate(id,{$pull:{review:ObjectId}});
     console.log("----Deleted review form listing but not from review db-----");
