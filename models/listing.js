@@ -33,6 +33,22 @@ const listingSchema=new mongoose.Schema({
     owner:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User",
+    },
+    category:{
+        type:String,
+        enum:[
+            "Trending",
+            "Rooms",
+            "IconiCities",
+            "Mountains",
+            "Camping",
+            "Castles",
+            "AmazingPools",
+            "Farms",
+            "Arctic",
+            "Domes",
+            "Island",
+        ],
     }
 });
 //post middleware

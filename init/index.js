@@ -13,7 +13,7 @@ const initdata=require("./data.js");
 const initDB=async()=>{
    await Listing.deleteMany({});
    console.log("data deleted succesfully");
-   const initData=initdata.map((obj)=>({...obj,owner:'6a6e1d41039d246cc0143aa8'}));
+   const initData=initdata.map((obj)=>({...obj,owner:'6a6e1d41039d246cc0143aa8',category:"Trending"}));
    await Listing.insertMany(initData);
    console.log("data inserted succesfully");
 }

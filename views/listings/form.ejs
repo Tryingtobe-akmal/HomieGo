@@ -20,10 +20,26 @@
                 </div>
                  <div class="mb-3">
                     <label for="image" class="form-label">Upload Listing Image</label>
-                    <input type="link" id="image" class="form-control" name="listing[image]" placeholder="Enter image URL">
+                    <input type="link" id="image" class="form-control" name="listing[image]" placeholder="Enter image URL" required>
+                </div>
+                <div class=" mb-3">
+                    <label for="category" class="form-label">Select The categories</label>
+                    <select id="category" class="form-select" aria-label="Default select example mt-3" name="listing[category]" required>
+                        <option value="Trending">Trending</option>
+                        <option value="Rooms">Rooms</option>
+                        <option value="IconiCities">Iconic cities</option>
+                        <option value="Mountains">Mountains</option>
+                        <option value="Camping">Camping</option>
+                        <option value="Castles">Castles</option>
+                        <option value="AmazingPools">Amazing Pools</option>
+                        <option value="Farms">Farms</option>
+                        <option value="Arctic">Arctic</option>
+                        <option value="Domes">Domes</option>
+                        <option value="Island">Island</option>
+                    </select>
                 </div>
                 <div class="row">
-                    <div class="mb-3 col-md-4"> 
+                    <div class="mb-3 col-md-4">   
                         <label for="price" class="form-label">Price</label>
                         <input  id="price" class="form-control" name="listing[price]" placeholder="1200" type="number"  required>
                         <div class="invalid-feedback">

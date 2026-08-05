@@ -1,9 +1,33 @@
 const Listing=require("../models/listing.js");
+const { listingSchema } = require("../schema.js");
 
 module.exports.index=async(req,res)=>{
-  const allListings=await Listing.find({});
-  res.render("./listings/index.ejs",{allListings});
-}
+    const{category,search}=req.query;
+    if(category){
+      const allListings=await Listing.find({category:category});
+      res.render("./listings/index.ejs",{allListings});
+    }
+    else if(search){
+        const allListings=await Listing.find({
+            $or:[
+                {title:{$regex:search,$options:"i"}},
+                {location:{$regex:search,$options:"i"}},
+                {country:{$regex:search,$options:"i"}},
+            ]
+        });
+        if(allListings && allListings.length){
+            console.log(allListings);
+            res.render("./listings/index.ejs",{allListings});
+        }else{
+            res.render("./listings/noSearchedResults.ejs",{search});
+        }
+       
+    }else{
+         const allListings=await Listing.find({});
+        res.render("./listings/index.ejs",{allListings});
+    }  }
+ 
+
 module.exports.renderNewForm=(req,res)=>{
     res.render("./listings/form.ejs");
 }
