@@ -32,6 +32,7 @@ module.exports.renderLoginForm=(req,res)=>{
     res.render("./users/login.ejs");
 }
 module.exports.login=async(req,res)=>{
+    console.log(req.user);
     req.flash("success","Welcome to HomieGo,You are Logged in!");
     let redirectUrl=res.locals.redirectUrl||"/listings";
     console.log(redirectUrl);
