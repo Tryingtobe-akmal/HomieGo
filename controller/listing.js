@@ -16,7 +16,6 @@ module.exports.index=async(req,res)=>{
             ]
         });
         if(allListings && allListings.length){
-            console.log(allListings);
             res.render("./listings/index.ejs",{allListings});
         }else{
             res.render("./listings/noSearchedResults.ejs",{search});

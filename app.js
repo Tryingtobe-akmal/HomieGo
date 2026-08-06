@@ -20,6 +20,7 @@ const User=require("./models/user.js");
 const listingsRouter=require("./routes/listing.js");
 const reviewsRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
+const bookingRouter=require("./routes/booking.js");
 
 
 app.engine('ejs', engine);
@@ -74,29 +75,25 @@ app.use((req,res,next)=>{
     next();
 });
 
-// app.get("/demouser",async(req,res)=>{
-//     const fakeuser=new User({
-//         email:"helloworld@gmail.com",
-//         username:"Rohan",
-//     });
-//    let registeredUser= await User.register(fakeuser,"helloworld");
-//    res.send(registeredUser);
-// });
+
 
 //routes
 app.use("/listings",listingsRouter);
-app.use("/listings/:id/review",reviewsRouter);
 app.use("/",userRouter);
+app.use("/listings/:id",bookingRouter);
+app.use("/listings/:id/review",reviewsRouter);
+
 
 
 
 
 //middlewares
 app.use((req,res,next)=>{
-    next(new ExpressError(404,"Page Not Found"));
+    next(new ExpressError(404,"Page Not Found"));//for no route match---
 });
 
 app.use((err,req,res,next)=>{
+    console.error("FULL ERROR",err.stack)
     const{statuscode=500,message="something went wrong"}=err;
     res.render("./listings/error.ejs",{err});
     // res.status(statuscode).send(message);

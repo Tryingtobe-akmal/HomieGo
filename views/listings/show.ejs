@@ -16,13 +16,6 @@
           </p>
         </div>
     </div>
-      <!-- <ul>
-          <li><%= clickedListing.title %></li>
-          <li><%= clickedListing.description %></li>
-          <li>&#8377;<%= clickedListing.price.toLocaleString("en-IN")%></li>
-          <li><%= clickedListing.location %></li>
-          <li></li>
-      </ul> -->
       <br>
       <% if ( currUser && currUser._id.equals(clickedListing.owner._id)){%>
         <div class="btns">
@@ -32,6 +25,14 @@
           </form> 
         </div>
       <% } %>
+        <div class="col-4 offset-1 ">
+         <% if (currUser && !(currUser._id.equals(clickedListing.owner._id)) ){ %>
+            <form action="/listings/<%= clickedListing._id %>/book" method="get">
+              <button class="btn btn-dark offset-4 " >Book</button>
+            </form> 
+        <% } %>
+        </div>
+      
       
       <div class="col-8 offset-2 mt-3">
         <hr>
@@ -75,7 +76,7 @@
               <h5 class="card-title">@<%=clickedListing.review[i].author.username%></h5>
               <p class="starability-result" data-rating="<%=clickedListing.review[i].rating%>"></p>
               <p class="card-text"><%=clickedListing.review[i].comment%> </p>
-              <% if(currUser){ %>
+              <% if(currUser && currUser._id.equals(clickedListing.review[i].author._id)){ %>
                <form action="/listings/<%= clickedListing._id %>/review/<%= clickedListing.review[i]._id %>?_method=DELETE" method="post" class="mb-3">
                 <button class="btn btn-dark btn-sm">Delete</button>
               </form>

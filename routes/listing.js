@@ -32,17 +32,4 @@ router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEdit
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports=router;

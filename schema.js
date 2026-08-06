@@ -31,3 +31,18 @@ module.exports.reviewSchema=joi.object({
         comment:joi.string().required()
     }).required()
 });
+
+module.exports.bookingSchema=joi.object({
+    booking:joi.object({
+        checkedIn:joi.date().required(),
+        checkedOut:joi.date()
+                           .greater(joi.ref("checkedIn"))
+                           .required()
+                           .messages({"date.greater":"Check-out date must be greater than Check-in date"}),
+        guests:joi.number()
+                        .integer()
+                        .min(1)
+                        .required(),                
+
+    }).required()
+});
