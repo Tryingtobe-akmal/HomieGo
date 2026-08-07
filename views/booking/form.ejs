@@ -7,7 +7,7 @@
             <h2>Create a New Booking@<%= currUser.username %></h2>
             <br>
             <h4><%= listing.title %></h4>
-            <form action="/listings/<%= listing._id %>" method="post" novalidate class="needs-validation"  >
+            <form action="/listings/<%= listing._id %>/book" method="post" novalidate class="needs-validation"  >
                 <div class="mb-3 mt-3">
                     <label class="form-label" for="checkin">Check In</label>
                     <input id="checkin" class="form-control" type="date" name="booking[checkedIn]" placeholder="Add a catchy title" required>

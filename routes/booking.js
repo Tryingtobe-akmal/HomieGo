@@ -8,6 +8,6 @@ const {isLoggedIn,isOwner,validateListing,ownBooking,validateBooking}=require(".
 const bookingController=require("../controller/booking.js");
 
 router.get("/book",isLoggedIn,ownBooking,wrapAsync(bookingController.renderBookingForm));
-router.post("/",isLoggedIn,validateBooking,wrapAsync(bookingController.reserveSeat));
+router.post("/book",isLoggedIn,validateBooking,wrapAsync(bookingController.reserveSeat));
 
 module.exports=router;
