@@ -6,6 +6,7 @@ module.exports.renderBookingForm=async(req,res)=>{
    let listing= await Listing.findById(id);
    //Finding all booking of particular listing for disabling dates in form 
    const bookings=await Booking.find({listing:id});
+   console.log("-------The previous bookings of this lodge--------")
    console.log(bookings);
    res.render("./booking/form.ejs",{listing,bookings});
   
@@ -23,11 +24,9 @@ module.exports.reserveSeat=async (req,res) => {
     //Check Existing Booking(important)
     const existingBooking=await Booking.findOne({
         listing:id,
-        checkedIn:{$lt:checkedOut},
-        checkedOut:{$gt:checkedIn},
+        checkedIn:{$lte:checkedOut},
+        checkedOut:{$gte:checkedIn},
     });
-
-    console.log(existingBooking);
 
     if(existingBooking){
         req.flash("error","These dates are already Booked!");
