@@ -4,7 +4,11 @@ const Booking=require("../models/booking.js");
 module.exports.renderBookingForm=async(req,res)=>{
    const{id}=req.params;
    let listing= await Listing.findById(id);
-   res.render("./booking/form.ejs",{listing});
+   //Finding all booking of particular listing for disabling dates in form 
+   const bookings=await Booking.find({listing:id});
+   console.log(bookings);
+   res.render("./booking/form.ejs",{listing,bookings});
+  
 }
 module.exports.reserveSeat=async (req,res) => {
     const{id}=req.params;

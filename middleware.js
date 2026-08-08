@@ -90,21 +90,6 @@ let {error}= bookingSchema.validate(req.body);
         next();
     }
 }
-// module.exports.isSearch=(req,res,next)=>{
-//     const{search}=req.query;
-//         if(search){
-//             const allListings=await Listing.find({
-//                 $or:[
-//                     {title:{$regex:search,$options:"i"}},
-//                     {location:{$regex:search,$options:"i"}},
-//                     {country:{$regex:search,$options:"i"}},
-//                 ]
-//             });
-//             if(allListings && allListings.length){
-//                 res.render("./listings/index.ejs",{allListings});
-//             }else{
-//                 res.render("./listings/noSearchedResults.ejs",{search});
-//             }        
-//         }}
+
 
 

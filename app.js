@@ -77,6 +77,18 @@ app.use((req,res,next)=>{
 
 
 
+//globalsearch middleware
+app.use((req,res,next)=>{
+    if(req.method=="GET" &&
+        req.query.search &&
+        req.path !="/listings"
+    ){
+        return res.redirect(
+            `/listings?search=${encodeURIComponent(req.query.search)}`
+        );
+    }
+    next();
+});
 //routes
 app.use("/listings",listingsRouter);
 app.use("/",userRouter);
