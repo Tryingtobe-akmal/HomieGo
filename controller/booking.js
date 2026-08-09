@@ -1,5 +1,6 @@
 const Listing=require("../models/listing.js");
 const Booking=require("../models/booking.js");
+const user = require("../models/user.js");
 
 module.exports.renderBookingForm=async(req,res)=>{
    const{id}=req.params;
@@ -7,7 +8,6 @@ module.exports.renderBookingForm=async(req,res)=>{
    //Finding all booking of particular listing for disabling dates in form 
    const bookings=await Booking.find({listing:id});
    console.log("-------The previous bookings of this lodge--------")
-   console.log(bookings);
    res.render("./booking/form.ejs",{listing,bookings});
   
 }
@@ -46,4 +46,13 @@ module.exports.reserveSeat=async (req,res) => {
     req.flash("success","Congratulation booking sucessfull!");
     res.redirect(`/listings/${id}`);
 
+}
+
+module.exports.renderAllBookings=async(req,res)=>{
+    let bookings=await Booking.find({
+        user:req.user._id,
+    }).populate("listing")
+      .sort({createdAt:-1})
+    //   console.log(bookings);
+    res.render("./booking/show.ejs",{bookings});
 }

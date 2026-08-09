@@ -92,7 +92,7 @@ app.use((req,res,next)=>{
 //routes
 app.use("/listings",listingsRouter);
 app.use("/",userRouter);
-app.use("/listings/:id",bookingRouter);
+app.use("/",bookingRouter);
 app.use("/listings/:id/review",reviewsRouter);
 
 
