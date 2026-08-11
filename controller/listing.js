@@ -1,4 +1,5 @@
 const Listing=require("../models/listing.js");
+const User=require("../models/user.js");
 const { listingSchema } = require("../schema.js");
 
 module.exports.index=async(req,res)=>{
@@ -71,4 +72,24 @@ module.exports.destroyListing=async(req,res)=>{
      await Listing.findByIdAndDelete(id);
      req.flash("success","Listing Deleted!");
      res.redirect("/listings");
+}
+module.exports.addToWishlist=async(req,res)=>{
+    const{id}=req.params;
+    const user=await User.findById(req.user._id);
+    if(!user.wishlist.includes(id)){
+        user.wishlist.push(id);
+        await user.save();
+        console.log(`Listing id-${id} is added in Wishlist of ${user.username}`);
+    }else{
+        user.wishlist.pull(id);
+        await user.save();
+         console.log(`listing id-${id} is removed in Wishlist of ${user.username}`);
+    }
+    res.redirect(`/listings`);
+}
+module.exports.showAllWishlistedListings=async(req,res)=>{
+    let user=await User.findById(req.user._id)
+                        .populate("wishlist");
+    // console.log(user);                   
+    res.render("./listings/myWishlist.ejs",{listings:user.wishlist});
 }

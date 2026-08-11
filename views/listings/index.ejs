@@ -77,18 +77,29 @@
     </div>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3 ">
        <% for( let i=0; i<allListings.length; i++ ) { %>
-        <a href="/listings/<%= allListings[i]._id %>" class="listing-link">
             <div class="card listing-card" >
+                <% if (currUser) { %>
+                 <form action="/listings/<%= allListings[i]._id %>/wishlist" class="wishlist-form" method="post">
+                    <div>
+                        <% if (currUser && currUser.wishlist.includes(allListings[i]._id)) { %>
+                          <button type="submit" class="wishlist-btn">&#10084;</button>
+                        <%}else{%>
+                            <button type="submit" class="wishlist-btn">&#128420;</button>
+                        <%}%>
+                    </div>
+                 </form>
+                <% } %>
+                    <a href="/listings/<%= allListings[i]._id %>" class="listing-link">
                         <img src="<%= allListings[i].image %>" class="card-img-top" style="height: 20rem;" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">
-                            <b><%= allListings[i].title %> <br></b>
-                            &#8377;<%= allListings[i].price.toLocaleString("en-IN")%>/night
-                            <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
-                            </p>
-                        </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <b><%= allListings[i].title %> <br></b>
+                                    &#8377;<%= allListings[i].price.toLocaleString("en-IN")%>/night
+                                    <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+                                </p>
+                            </div>
+                    </a>        
             </div> 
-        </a>
         <%}%>
 </div>
 <script>

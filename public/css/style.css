@@ -57,6 +57,7 @@ body{
 }
 .listing-link{
     text-decoration: none;
+    color: inherit;
 }
 .card {
     transition: all 0.3s ease;
@@ -178,4 +179,26 @@ body{
 .search-input{
      border-radius: 1.7rem !important;
      padding: 0.5rem 3rem 0.5rem 3rem !important;
+}
+/* ----------------wishlist ----------------- */
+.listing-card {
+    position: relative;
+}
+
+.wishlist-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.wishlist-btn {
+    border: none;
+    background: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    cursor: pointer;
+    color: red;
 }

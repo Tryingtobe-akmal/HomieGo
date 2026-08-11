@@ -19,6 +19,8 @@ router
         .get(wrapAsync(listingController.index))
         .post(isLoggedIn,validateListing,wrapAsync(listingController.createListing));
         // .post( upload.single('listing[title]'),(req,res)=>{res.send("Hi")});
+
+router.get("/yourwishlist",isLoggedIn,wrapAsync(listingController.showAllWishlistedListings))        
         
 
 router
@@ -28,6 +30,11 @@ router
         .delete(isLoggedIn,isOwner,wrapAsync(listingController.destroyListing));
 
 router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEditForm));
+router.post("/:id/wishlist",isLoggedIn,wrapAsync(listingController.addToWishlist));
+// router.get("/:id/wishlist",isLoggedIn,(req,res)=>{
+//     req.flash("error","Invalid wishlist request");
+//     res.redirect("/listings");
+// })
 
 
 
