@@ -1,4 +1,7 @@
 <% layout("./layout/boilerplate.ejs") %>
+<script>
+   const mapToken= "<%= process.env.MAP_TOKEN %>";
+</script>
 <body>
   <div class="row mt-3">
     <div class="col-8 offset-2">
@@ -17,14 +20,14 @@
         </div>
     </div>
       <br>
-      <% if ( currUser && currUser._id.equals(clickedListing.owner._id)){%>
+       <% if ( currUser && currUser._id.equals(clickedListing.owner._id)){%>
         <div class="btns">
           <a href="/listings/<%= clickedListing._id %>/edit" class="btn btn-dark col-1 offset-2 edit-btn" >Edit</a>
           <form action="/listings/<%= clickedListing._id %>?_method=DELETE" method="post">
             <button class="btn btn-dark offset-4 " >Delete</button>
           </form> 
         </div>
-      <% } %>
+       <% } %>
         <div class="col-4 offset-1 ">
          <% if (currUser && !(currUser._id.equals(clickedListing.owner._id)) ){ %>
             <form action="/listings/<%= clickedListing._id %>/book" method="get">
@@ -35,9 +38,9 @@
       
       
       <div class="col-8 offset-2 mt-3">
-        <hr>
-        <h4>Leave a Review</h4>
         <%if(currUser){%>
+          <hr>
+        <h4>Leave a Review</h4>
         <form action="/listings/<%= clickedListing._id %>/review" method="POST" novalidate class="needs-validation">
           <!-- <div class="mt-3 mb-3">
             <label for="rating">Rating</label>
@@ -67,8 +70,10 @@
           <button class="btn btn-outline-dark">Submit</button>
         </form>
         <% } %>
+        <% if (clickedListing.review.length!=0) { %>
         <hr>
         <h4>All Reviews</h4>
+        <% } %>
         <div class="row">
           <% for( let i = 0; i < clickedListing.review.length; i++ ) { %>
           <div class="card mt-3 mb-3 ms-3 col-5">
@@ -85,9 +90,18 @@
           </div>
           <% } %>
         </div>
+        <div>
+          <h4>Where you'll be</h4>
+          <div id="map"></div>
+        </div>
       </div> 
-  </div>     
+  </div>
+<script>
+    window.coordinates = <%- JSON.stringify(clickedListing.geometry.coordinates) %>;
+</script>
+<script src="/js/map.js"></script>
 </body>
+
 
 
 

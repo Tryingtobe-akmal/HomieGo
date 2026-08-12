@@ -50,8 +50,20 @@ const listingSchema=new mongoose.Schema({
             "Domes",
             "Island",
         ],
-    }
+    },
+    geometry: {
+            type: {
+                type: String, // Don't do `{ location: { type: String } }`
+                enum: ['Point'], // 'location.type' must be 'Point'
+                required: true
+            },
+            coordinates: {
+                type: [Number],
+                required: true
+            }
+        },
 });
+
 //post middleware
 listingSchema.post("findOneAndDelete",async(listing)=>{
     if(listing){
