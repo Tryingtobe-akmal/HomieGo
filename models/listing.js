@@ -8,9 +8,14 @@ const listingSchema=new mongoose.Schema({
     },
     description:String,
     image:{
-        type:String,
-        default:"https://unsplash.com/photos/white-bed-linen-with-throw-pillows-Yrxr3bsPdS0",
-        set:(v) => v==="" ? "https://unsplash.com/photos/white-bed-linen-with-throw-pillows-Yrxr3bsPdS0": v // read mongoose virtual
+        url:{
+            type:String,
+            required:true,
+        },
+        filename:{
+            type:String,
+            required:true,
+        }
     },
     price:{
         type:Number,

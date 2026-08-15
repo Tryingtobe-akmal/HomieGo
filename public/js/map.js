@@ -7,7 +7,7 @@
         center: coordinates , // starting position [lng, lat]. Note that lat must be set between -90 and 90
         zoom: 13 // starting zoom
     });
-    new mapboxgl.Marker()
+    new mapboxgl.Marker({color:'red'})
     .setLngLat(coordinates)
     .addTo(map);
 
