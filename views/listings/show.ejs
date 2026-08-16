@@ -90,11 +90,12 @@
           </div>
           <% } %>
         </div>
-        <div>
-          <h4>Where you'll be</h4>
-          <div id="map"></div>
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-2">
+              <h4>Here You'll be</h4>
+                <div id="map" class="rounded"></div>
+            </div>
         </div>
-      </div> 
   </div>
 <script>
     window.coordinates = <%- JSON.stringify(clickedListing.geometry.coordinates) %>;
