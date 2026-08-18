@@ -11,6 +11,7 @@ const methodOverride=require("method-override");
 const engine = require('ejs-mate');
 const ExpressError=require("./utils/ExpressError.js");
 const session=require("express-session");
+const MongoStore = require("connect-mongo").default;
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
@@ -32,21 +33,60 @@ app.use(express.urlencoded({extended : true}));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,"public")));
 
+const dbUrl = process.env.MONGODB_URI;
 
-main()
-.then(()=>{console.log("Connected to db")})
-.catch((err)=>{console.log(err);})
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/HomieGo');
+    try {
+        await mongoose.connect(dbUrl);
+        console.log("✅ Connected to MongoDB");
+    } catch (err) {
+        console.log("❌ MongoDB connection failed");
+        console.log(err);
+    }
 }
+
+
+const dns = require("dns");
+
+dns.setServers([
+    "8.8.8.8",
+    "1.1.1.1"
+]);
+
+async function main() {
+    try {
+        await mongoose.connect(dbUrl);
+        console.log("✅ Connected to MongoDB");
+    } catch (err) {
+        console.log("❌ MongoDB connection failed");
+        console.log(err);
+    }
+}
+
+main();
+
+
 
 app.listen(8080,()=>{
     console.log("app is listening non port 8080");
 });
 
+const store=MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto:{
+        secret:process.env.SESSION_SECRET,
+    },
+    touchAfter:24*3600,
+    });
+
+store.on("error",()=>{
+    console.log("Error in the mongo session store",error);
+});
+    
 const sessionOptions={
-    secret:"mysupersecretcode",
+    store,
+    secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
