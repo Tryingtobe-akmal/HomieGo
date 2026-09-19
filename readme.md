@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://homiego-xcb1.onrender.com/listings">🌐 Live Demo</a> •
+  <a href="https://homiego.akmal.co.in/listings">🌐 Live Demo</a> •
   <a href="https://github.com/Tryingtobe-akmal/HomieGo">💻 GitHub Repository</a>
 </p>
 
