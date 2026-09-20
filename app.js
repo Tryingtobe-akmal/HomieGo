@@ -35,18 +35,6 @@ app.use(express.static(path.join(__dirname,"public")));
 
 const dbUrl = process.env.MONGODB_URI;
 
-
-async function main() {
-    try {
-        await mongoose.connect(dbUrl);
-        console.log("✅ Connected to MongoDB");
-    } catch (err) {
-        console.log("❌ MongoDB connection failed");
-        console.log(err);
-    }
-}
-
-
 const dns = require("dns");
 
 dns.setServers([
