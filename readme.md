@@ -23,7 +23,7 @@
 
 ## 🚀 Live Application
 
-### 👉 [Open HomieGo — Live Website](https://homiego-xcb1.onrender.com/listings)
+### 👉 [Open HomieGo — Live Website](https://homiego.akmal.co.in/listings)
 
 > The application is deployed on Render and integrates with MongoDB, Cloudinary and Mapbox.
 
@@ -992,7 +992,7 @@ http://localhost:3000/listings
 
 # 🌐 Deployment
 
-HomieGo is deployed using **Render**.
+HomieGo is deployed using **Azure**.
 
 Production architecture:
 
@@ -1000,7 +1000,7 @@ Production architecture:
                     GitHub
                        │
                        ▼
-                    Render
+                    Azure
                        │
                        ▼
                  Node + Express
@@ -1012,7 +1012,7 @@ Production architecture:
 
 Live application:
 
-### 👉 https://homiego-xcb1.onrender.com/listings
+### 👉https://homiego.akmal.co.in/listings
 
 ---
 
@@ -1285,7 +1285,7 @@ If you found HomieGo interesting, consider giving the repository a ⭐ on GitHub
 
 ### 🔗 Project Links
 
-- 🌐 **Live Application:** https://homiego-xcb1.onrender.com/listings
+- 🌐 **Live Application:** https://homiego.akmal.co.in/listings
 - 💻 **GitHub:** https://github.com/Tryingtobe-akmal/HomieGo
 
 ---
