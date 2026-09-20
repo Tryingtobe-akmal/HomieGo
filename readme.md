@@ -25,7 +25,7 @@
 
 ### 👉 [Open HomieGo — Live Website](https://homiego.akmal.co.in/listings)
 
-> The application is deployed on Render and integrates with MongoDB, Cloudinary and Mapbox.
+> The application is deployed on Azure and integrates with MongoDB, Cloudinary and Mapbox.
 
 ---
 
